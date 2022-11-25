@@ -37,7 +37,7 @@ app.get('/students', (req, res)=>{
 })
 
 //添加学生信息
-app.post('/student_add',(req, res)=>{
+app.post('/student_add',(req, res, next)=>{
     //获取学生id，计算最后一名学生id加1
     const newid = STUDENT_DATA.length?STUDENT_DATA.at(-1).id+1:1
     //获取添加的学生的各项信息
@@ -50,29 +50,16 @@ app.post('/student_add',(req, res)=>{
     }
     //将学生信息添加到数据列表中
     STUDENT_DATA.push(newstudent);
-    //将学生信息写入到json文件中后重定向到学生页面
-    fs.writeFile(
-        path.resolve(__dirname,'./data/student.json'),
-        JSON.stringify(STUDENT_DATA)
-    ).then(()=>{
-        res.redirect('/students')
-    }).catch((e)=>{
-        console.log("错误信息",e);
-    })
+    next()
+
 })
 
 //删除学生信息
-app.get('/delete',(req, res)=>{
+app.get('/delete',(req, res, next)=>{
     const id = +req.query.id;
     STUDENT_DATA = STUDENT_DATA.filter(stu => stu.id !== id);
-    fs.writeFile(
-        path.resolve(__dirname,'./data/student.json'),
-        JSON.stringify(STUDENT_DATA)
-    ).then(()=>{
-        res.redirect('/students')
-    }).catch((e)=>{
-        console.log("错误信息",e);
-    })
+    next()
+
 })
 
 // 修改信息(信息展示)
@@ -83,13 +70,19 @@ app.get('/edit_data',(req, res)=>{
     res.render("edit", {student})
 })
 // 修改信息
-app.post('/edit',(req,res)=>{
+app.post('/edit',(req,res,next)=>{
     console.log(req.body);
     let {id,name,age,gender,address} = req.body;
     id = +id
     age = +age
     const newstu = {id,name,age,gender,address}
     STUDENT_DATA.splice(newstu.id-1, 1, newstu);
+    next()
+    
+})
+
+//将学生信息写入到json文件中后重定向到学生页面
+app.use((req,res,nex)=>{
     fs.writeFile(
         path.resolve(__dirname,'./data/student.json'),
         JSON.stringify(STUDENT_DATA)
@@ -98,8 +91,10 @@ app.post('/edit',(req,res)=>{
     }).catch((e)=>{
         console.log("错误信息",e);
     })
-    
+
 })
+
+
 
 //设置get请求（路由的回调函数执行，会接收到三个参数）
 // app.get("/", (req, res)=>{

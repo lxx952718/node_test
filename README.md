@@ -112,7 +112,7 @@
    将本地库上传git：
    
    ```bash
-   git remote add origin https://github.com/lxx952718/git_test.git
+   git remote add origin https://github.com/lxx952718/node_test.git
    # git remote add <remote name> <url>
    
    git branch -M main
@@ -125,7 +125,7 @@
    将本地库上传gitee：
    
    ```bash
-   git remote add gitee_test https://gitee.com/landiaoLXX/gitee_test
+   git remote add gitee_test https://gitee.com/landiaoLXX/node_test
    git push -u gitee main
    ```
    
