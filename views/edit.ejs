@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .edit{
+            margin: 50px auto;
+            padding: 10px;
+            width: 300px;
+        }
+        .edit div{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit">
+        <h1>修改学生信息</h1>
+        <form action="/edit" method="post">
+            <div style="opacity: 0;">学号：<input type="hidden" name="id" value="<%=student.id%>"></div>
+            <div>姓名：<input type="text" name="name" value="<%=student.name%> "></div>
+            <div>年龄：<input type="number" name="age" max="150" min="0" value="<%=student.age%>"></div>
+            <div>性别：<input type="radio" name="gender" value="男" <% if(student.gender === '男'){%>checked<% } %> >男
+                <input type="radio" name="gender" value="女" <% if(student.gender === '女'){%>checked<% } %>>女
+            </div>
+            <div>住址：<input type="text" name="address" value="<%=student.address%> "></div>
+            <div><button>提交</button></div>
+        </form>        
+    </div>
+</body>
+</html>

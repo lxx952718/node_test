@@ -1,0 +1,27 @@
+{
+  "name": "express_demo",
+  "version": "1.0.0",
+  "description": "## 第一部分 预备知识 —— git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lxx952718/git_test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lxx952718/git_test/issues"
+  },
+  "homepage": "https://github.com/lxx952718/git_test#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

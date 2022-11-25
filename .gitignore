@@ -1,0 +1,4 @@
+#配置git忽略
+node_modules
+package-lock
+package

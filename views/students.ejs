@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejs模板</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .app{
+            margin: 50px auto;
+            width: 500px;
+            
+        }
+        table{
+            border-collapse: collapse;
+        }
+        td,th{
+            border: 1px solid black;
+            text-align: center;
+            font-size: 20px;
+            padding: 10px;
+        }
+        caption{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .del{
+            color: red;
+        }
+        .form{
+            margin: 0 auto;
+            width: 500px;
+            padding: 10px;
+        }
+        .form div{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 可以通过<%# %> 实现传递数据进来实现动态页面-->
+    <div class="app">
+        <!-- 判断列表是否有信息，没有就不显示列表 -->
+        <% if(stus.length){ %> 
+        <table>
+            <caption>西游记学生信息表</caption>
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>住址</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 通过for循环遍历数据 -->
+                <% for(const stu of stus){%> 
+                    <tr>
+                        <td><%=stu.id%></td>
+                        <td><%=stu.name%></td>
+                        <td><%=stu.age%></td>
+                        <td><%=stu.gender%></td>
+                        <td><%=stu.address%></td>
+                        <td>
+                            <!-- 通过?id方式传递要删除id -->
+                            <a class="del" href="/delete?id=<%=stu.id%>" onclick="return confirm('确定要删除<%=stu.name %>吗!')">删除</a>
+                            <span>|</span>
+                            <a href="/edit_data?id=<%=stu.id%>" style="color: skyblue;">修改</a>
+                        </td>
+                    </tr>
+                <% } %> 
+            </tbody>
+        </table>
+        <% }else{ %> 
+            <p>暂无学生信息，请添加！！！</p>
+        <% } %> 
+    </div>
+    <hr>
+    <div class="form">
+        <h1>添加学生信息</h1>
+        <form action="/student_add" method="post">
+            <div>姓名：<input type="text" name="name"></div>
+            <div>年龄：<input type="number" max="150" min="0" name="age"></div>
+            <div>性别：<input type="radio" name="gender" value="男">男
+                <input type="radio" name="gender" value="女">女</div>
+            <div>住址：<input type="text" name="address"></div>
+            <div><button>添加</button></div>
+        </form>
+    </div>
+</body>
+</html>
