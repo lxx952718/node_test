@@ -94,6 +94,10 @@ app.use((req,res,nex)=>{
 
 })
 
+app.use((req, res)=>{
+    res.status(404)
+    res.send("<h1>您访问的地址被外星人劫持了！！！</h1>")
+})
 
 
 //设置get请求（路由的回调函数执行，会接收到三个参数）
