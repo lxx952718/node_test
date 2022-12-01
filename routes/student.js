@@ -6,7 +6,11 @@ const path = require("path")
 
 //学生列表的路由
 router.get("/list",(req, res)=>{
-    res.render("students", {stus:STUDENT_DATA})
+    if(req.cookies.username){
+        res.render("students", { stus: STUDENT_DATA})
+    }else{
+        res.redirect("/")
+    }
 })
 
 //添加学生的路由
