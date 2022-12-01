@@ -9,7 +9,7 @@
         .edit{
             margin: 50px auto;
             padding: 10px;
-            width: 300px;
+            width: 500px;
         }
         .edit div{
             margin-top: 10px;
@@ -19,7 +19,7 @@
 <body>
     <div class="edit">
         <h1>修改学生信息</h1>
-        <form action="/edit" method="post">
+        <form action="/students/edit" method="post">
             <div style="opacity: 0;">学号：<input type="hidden" name="id" value="<%=student.id%>"></div>
             <div>姓名：<input type="text" name="name" value="<%=student.name%> "></div>
             <div>年龄：<input type="number" name="age" max="150" min="0" value="<%=student.age%>"></div>

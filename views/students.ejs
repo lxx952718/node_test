@@ -14,11 +14,12 @@
         }
         .app{
             margin: 50px auto;
-            width: 500px;
+            width: 800px;
             
         }
         table{
             border-collapse: collapse;
+            margin: 0 auto;
         }
         td,th{
             border: 1px solid black;
@@ -35,7 +36,7 @@
         }
         .form{
             margin: 0 auto;
-            width: 500px;
+            width: 800px;
             padding: 10px;
         }
         .form div{
@@ -71,9 +72,9 @@
                         <td><%=stu.address%></td>
                         <td>
                             <!-- 通过?id方式传递要删除id -->
-                            <a class="del" href="/delete?id=<%=stu.id%>" onclick="return confirm('确定要删除<%=stu.name %>吗!')">删除</a>
+                            <a class="del" href="/students/delete?id=<%=stu.id%>" onclick="return confirm('确定要删除<%=stu.name %>吗!')">删除</a>
                             <span>|</span>
-                            <a href="/edit_data?id=<%=stu.id%>" style="color: skyblue;">修改</a>
+                            <a href="/students/edit_data?id=<%=stu.id%>" style="color: skyblue;">修改</a>
                         </td>
                     </tr>
                 <% } %> 
@@ -86,7 +87,7 @@
     <hr>
     <div class="form">
         <h1>添加学生信息</h1>
-        <form action="/student_add" method="post">
+        <form action="/students/add" method="post">
             <div>姓名：<input type="text" name="name"></div>
             <div>年龄：<input type="number" max="150" min="0" name="age"></div>
             <div>性别：<input type="radio" name="gender" value="男">男
