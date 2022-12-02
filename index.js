@@ -19,7 +19,7 @@ const router = express.Router()
 //router实际上是一个中间件，可以在该中间件上去绑定各种路由以及其它的中间件
 app.use("/students", require("./routes/student"))
 //解析cookie
-app.use(cookieParser)
+app.use(cookieParser())
 
 //登录路由
 app.get("/",(req, res)=>{
