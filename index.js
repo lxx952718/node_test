@@ -5,6 +5,8 @@ const fs = require("fs/promises")
 const app = express()
 const cookieParser = require("cookie-parser")
 
+//解析cookie
+app.use(cookieParser())
 //设置模板引擎
 app.set("view engine", "ejs")
 //配置模板路径
@@ -18,13 +20,10 @@ app.use(express.urlencoded({extended: true}))
 const router = express.Router()
 //router实际上是一个中间件，可以在该中间件上去绑定各种路由以及其它的中间件
 app.use("/students", require("./routes/student"))
-//解析cookie
-app.use(cookieParser)
 
 //登录路由
 app.get("/",(req, res)=>{
     res.render("login")
-    console.log(111);
 })
 
 app.post("/login",(req, res)=>{
@@ -42,7 +41,8 @@ app.post("/login",(req, res)=>{
     */
     // 获取用户的用户名和密码
     const {username, password} = req.body
-    if(username === "admin" && password === "123123"){
+    console.log(req.body);
+    if(username === "admin" && password === "123456"){
         // 登录成功
         // res.send("登录成功")
         // 将用户名放入cookie
