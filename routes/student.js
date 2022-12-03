@@ -4,13 +4,18 @@ let STUDENT_DATA = require("../data/student.json")
 const fs = require("fs/promises")
 const path = require("path")
 
-//学生列表的路由
-router.get("/list",(req, res)=>{
-    if(req.cookies.username){
-        res.render("students", { stus: STUDENT_DATA})
+//权限验证
+router.use((req, res, next)=>{
+    if(req.session.loginuser){
+        next()
     }else{
         res.redirect("/")
     }
+})
+
+//学生列表的路由
+router.get("/list",(req, res)=>{
+    res.render("students", { stus: STUDENT_DATA,username:req.session.loginuser})
 })
 
 //添加学生的路由
@@ -35,12 +40,10 @@ router.post("/add",(req, res, next)=>{
 router.get("/edit_data",(req, res)=>{
     const id = +req.query.id
     const student = STUDENT_DATA.filter(stus => stus.id === id)[0];
-    console.log(student);
     res.render("edit", {student})
 })
 // 修改信息
 router.post("/edit",(req,res,next)=>{
-    console.log(req.body);
     let {id,name,age,gender,address} = req.body;
     id = +id
     age = +age
